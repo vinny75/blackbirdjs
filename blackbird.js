@@ -9,8 +9,7 @@
 */
 ( function() {
 	var NAMESPACE = 'log';
-	var IE6_POSITION_FIXED = true; // enable IE6 {position:fixed}
-	
+
 	var bbird;
 	var outputList;
 	var cache = [];
@@ -66,19 +65,6 @@
 			'</div>'
 		].join( '' );
 		return newNode;
-	}
-
-	function backgroundImage() { //(IE6 only) change <BODY> tag's background to resolve {position:fixed} support
-		var bodyTag = document.getElementsByTagName( 'BODY' )[ 0 ];
-		
-		if ( bodyTag.currentStyle && IE6_POSITION_FIXED ) {
-			if (bodyTag.currentStyle.backgroundImage == 'none' ) {
-				bodyTag.style.backgroundImage = 'url(about:blank)';
-			}
-			if (bodyTag.currentStyle.backgroundAttachment == 'scroll' ) {
-				bodyTag.style.backgroundAttachment = 'fixed';
-			}
-		}
 	}
 
 	function addMessage( type, content ) { //adds a message to the output list
@@ -323,8 +309,6 @@
 		var body = document.getElementsByTagName( 'BODY' )[ 0 ];
 		bbird = body.appendChild( generateMarkup() );
 		outputList = bbird.getElementsByTagName( 'OL' )[ 0 ];
-	
-		backgroundImage();
 	
 		//add events
 		addEvent( IDs.checkbox, 'click', clickVis );
